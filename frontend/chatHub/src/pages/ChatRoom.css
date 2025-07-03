@@ -1,0 +1,10 @@
+/* Layout container */
+.chatroom-container {
+  display: flex;
+  height: 100vh;
+  background-color: #0f172a; /* Dark blue main background */
+  color: #dbeafe;            /* Soft text color */
+  overflow: hidden;
+}
+
+/* Sidebar will be styled in UserListSidebar.css */
