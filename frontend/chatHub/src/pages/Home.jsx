@@ -9,9 +9,8 @@ const Home = () => {
       <div className="image-wrapper">
         <img src={bg_image} alt="Background Illustration" />
       </div>
-      {/* <div className="image-wrapper">
-        <img src={bg_image2} alt="Messages Illustration" />
-      </div> */}
+      <div className="submit-btn">
+       <button></button>      </div>
     </div>
   );
 };
