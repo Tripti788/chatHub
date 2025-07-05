@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatWindow.css';
-import MsgBubble from '../components/MsgBubble'; // Make sure MsgBubble.jsx exists and exports default
-import MsgInput from '../components/MsgInput';   // Correct the path if needed
+import MsgBubble from '../components/MsgBubble';
+import MsgInput from '../components/MsgInput';
 
-const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
+const ChatWindow = ({ selectedUser, messages, onSendMessage, loggedInUser }) => {
   const [input, setInput] = useState('');
   const bottomRef = useRef(null);
 
@@ -34,13 +34,18 @@ const ChatWindow = ({ selectedUser, messages, onSendMessage }) => {
           <MsgBubble
             key={index}
             content={msg.content}
-            isSent={msg.sender === 'me'}
+            isSent={msg.sender === loggedInUser._id}
           />
         ))}
         <div ref={bottomRef} />
       </div>
 
-      <MsgInput onSend={onSendMessage} />
+      <MsgInput
+        onSend={onSendMessage}
+        input={input}
+        setInput={setInput}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };

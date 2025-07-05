@@ -65,3 +65,8 @@
 .message-input button:hover {
   background-color: #b891ec;
 }
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+}

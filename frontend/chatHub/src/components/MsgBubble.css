@@ -1,20 +1,25 @@
-.message-bubble {
-  max-width: 65%;
-  padding: 10px 14px;
-  margin: 6px 0;
-  border-radius: 16px;
-  font-size: 0.95rem;
+.msg-bubble {
+  padding: 10px 15px;
+  margin: 8px 12px;
+  border-radius: 20px;
+  max-width: 60%;
   word-wrap: break-word;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 .sent {
+  background-color: #6c5ce7;
+  color: white;
   align-self: flex-end;
-  background-color: #4c5b8a;
-  color: #fff;
+  margin-left: auto;
+  border-bottom-right-radius: 0;
 }
 
 .received {
+  background-color: #dfe6e9;
+  color: #2d3436;
   align-self: flex-start;
-  background-color: #6d5e9c;
-  color: #fff;
+  margin-right: auto;
+  border-bottom-left-radius: 0;
 }

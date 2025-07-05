@@ -1,3 +1,4 @@
+// ChatRoom.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 import UserListSidebar from '../components/UserList';
@@ -17,61 +18,77 @@ const ChatRoom = () => {
 
     if (storedUser && token) {
       const user = JSON.parse(storedUser);
+      user._id = user._id || user.id; // ✅ Ensure _id exists
+      delete user.id;
       setLoggedInUser(user);
 
-      // ✅ Connect to socket server
+      // Connect socket
       socketRef.current = io('http://localhost:3000');
 
-      // ✅ Listen for incoming messages
+      // Listen to incoming messages
       socketRef.current.on('receiveMessage', (message) => {
         if (
-          message.receiver === user.id ||
-          message.sender === user.id
+          message.receiver === user._id ||
+          message.sender === user._id
         ) {
           setMessages((prev) => [...prev, message]);
         }
       });
 
-      // ✅ Fetch users
+      // Fetch users
       fetch('http://localhost:3000/api/users', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
+        headers: { Authorization: `Bearer ${token}` }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (!Array.isArray(data)) {
-            console.error("Backend error:", data.message || data);
-            return;
+        .then(res => res.json())
+        .then(data => {
+          if (Array.isArray(data)) {
+            setUsers(data.filter(u => u._id !== user._id));
+          } else {
+            console.error("Invalid user response", data);
           }
-          const otherUsers = data.filter((u) => u._id.toString() !== user.id.toString());
-          setUsers(otherUsers);
         })
-        .catch((err) => {
-          console.error('Error fetching users:', err);
-        });
+        .catch(err => console.error("❌ Error fetching users:", err));
 
-      // ✅ Disconnect on unmount
-      return () => {
-        socketRef.current.disconnect();
-      };
+      return () => socketRef.current.disconnect();
     }
   }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!selectedUser || !loggedInUser || !token) return;
+
+    fetch(`http://localhost:3000/api/messages/${selectedUser._id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          setMessages(data);
+        } else {
+          console.error("Invalid message response:", data);
+        }
+      })
+      .catch(err => console.error("❌ Failed to fetch messages:", err));
+  }, [selectedUser]);
 
   const handleSendMessage = (content) => {
     if (!selectedUser || !loggedInUser) return;
 
     const message = {
-      sender: loggedInUser.id,
+      sender: loggedInUser._id,
       receiver: selectedUser._id,
       content,
       timestamp: new Date().toISOString()
     };
 
-    setMessages((prev) => [...prev, message]);
+    // console.log("📤 Emitting message:", message); // ✅
 
-    // ✅ Emit message to backend
+    // setMessages(prev => [...prev, {
+    //   ...message,
+    //   _id: Date.now(),
+    //   createdAt: new Date().toISOString()
+    // }]);
+
     socketRef.current.emit('sendMessage', message);
   };
 
@@ -87,6 +104,7 @@ const ChatRoom = () => {
         selectedUser={selectedUser}
         messages={messages}
         onSendMessage={handleSendMessage}
+        loggedInUser={loggedInUser}
       />
     </div>
   );

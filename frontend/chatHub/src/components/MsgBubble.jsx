@@ -1,9 +1,9 @@
 import React from 'react';
-import './MsgBubble.css';
+import './MsgBubble.css'; // Optional, for styling
 
 const MsgBubble = ({ content, isSent }) => {
   return (
-    <div className={`message-bubble ${isSent ? 'sent' : 'received'}`}>
+    <div className={`msg-bubble ${isSent ? 'sent' : 'received'}`}>
       {content}
     </div>
   );
