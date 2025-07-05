@@ -1,26 +1,39 @@
+/* Container layout */
 .home-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  padding: 0rem;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #0f172a; /* your page background */
 }
 
-.image-wrapper {
-  flex: 1 1 400px; /* grows, shrinks, minimum width 400px */
-  max-width: 600px;
-  display: flex;
-  justify-content: center;
-}
-
+/* Image styling */
 .image-wrapper img {
-  max-width: 100%;
+  max-width: 400px;
+  width: 80%;
   height: auto;
-  border-radius: 12px;
-  object-fit: contain;
+  margin-bottom: 2rem;
 }
 
-.submit-btn{
-    background-color:rgb(0, 0, 0);
+/* Button styling */
+.submit-btn button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border: none;
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  animation: rotateButton 1.5s ease-in-out 1; /* Play once */
+}
+
+/* Rotate animation */
+@keyframes rotateButton {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg); /* 2 full spins */
+  }
 }

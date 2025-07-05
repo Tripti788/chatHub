@@ -10,7 +10,7 @@ const Home = () => {
         <img src={bg_image} alt="Background Illustration" />
       </div>
       <div className="submit-btn">
-       <button>Start talking...</button>      </div>
+       <button>Start talking...</button>  </div>
     </div>
   );
 };
