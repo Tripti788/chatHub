@@ -1,6 +1,6 @@
 import React from 'react';
 import bg_image from '../assets/bg_image.png';
-import bg_image2 from '../assets/bg_image2.jpg';
+// import bg_image2 from '../assets/bg_image2.jpg';
 import './Home.css'; // optional if you want custom styling
 
 const Home = () => {
@@ -9,9 +9,9 @@ const Home = () => {
       <div className="image-wrapper">
         <img src={bg_image} alt="Background Illustration" />
       </div>
-      <div className="image-wrapper">
+      {/* <div className="image-wrapper">
         <img src={bg_image2} alt="Messages Illustration" />
-      </div>
+      </div> */}
     </div>
   );
 };
