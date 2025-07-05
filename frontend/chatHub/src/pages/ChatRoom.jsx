@@ -23,7 +23,7 @@ const ChatRoom = () => {
       setLoggedInUser(user);
 
       // Connect socket
-      socketRef.current = io('http://localhost:3000');
+      socketRef.current = io('https://chathub-mfeq.onrender.com');
 
       // Listen to incoming messages
       socketRef.current.on('receiveMessage', (message) => {
@@ -36,7 +36,7 @@ const ChatRoom = () => {
       });
 
       // Fetch users
-      fetch('http://localhost:3000/api/users', {
+      fetch('https://chathub-mfeq.onrender.com/api/users', {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -57,7 +57,7 @@ const ChatRoom = () => {
     const token = localStorage.getItem('token');
     if (!selectedUser || !loggedInUser || !token) return;
 
-    fetch(`http://localhost:3000/api/messages/${selectedUser._id}`, {
+    fetch(`https://chathub-mfeq.onrender.com/api/messages/${selectedUser._id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
