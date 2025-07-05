@@ -1,45 +1,41 @@
-const dotenv = require('dotenv');        // ✅ Load environment variables
-dotenv.config();  
-const express = require('express')
-const http =require('http');
+// backend/index.js
+
+const dotenv = require('dotenv');
+dotenv.config();
+
+const express = require('express');
+const http = require('http');
 const socketIO = require('socket.io');
-const connectDB = require('./config/db')
-const app = express()
-const port = 3000
+const connectDB = require('./config/db');
 const cors = require('cors');
 
-connectDB();
+const app = express();
 const server = http.createServer(app);
-const io = socketIO(server,{
-  cors:{
-    origin:"http://localhost:5173",
-    methods:["GET","POST"]
+const io = socketIO(server, {
+  cors: {
+    origin: "http://localhost:5173", // frontend port
+    methods: ["GET", "POST"]
   }
 });
+
+// Connect DB
+connectDB();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/messages', require('./routes/messageRoutes'));
-
-
-// Routes
+// API Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/messages', require('./routes/messageRoutes'));
 
-io.on('connection',(socket) => {
-  console.log("new client connected: ",socket.id);
+// ✅ Socket logic moved here
+const socketHandler = require('./socket');
+socketHandler(io);
 
-  socket.on('SendMessage',(message) => {
-    io.emit('recieveMessage',message);
-  });
-
-  socket.on('disconnect', () => {
-    console.log("client disconnected", socket.id);
-  })
-})
-
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// Start server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
