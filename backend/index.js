@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server, {
   cors: {
-    origin: "http://localhost:5173", // frontend port
+    origin: "https://chat-hub-navy.vercel.app", // frontend port
     methods: ["GET", "POST"]
   }
 });
