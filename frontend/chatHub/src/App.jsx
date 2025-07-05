@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register';
 import Navbar from './pages/NavBar';
 import ChatRoom from './pages/ChatRoom';
+import Home from './pages/Home';
 
 
 function App() {
@@ -16,10 +17,9 @@ function App() {
         <Navbar/>
         <Routes>
           <Route path='/' element={
-            <div>
-               <Navbar/>
+          
             <Home/>
-            </div>
+           
             }/>
 
           <Route path='/login' element={<Login/>}/>
