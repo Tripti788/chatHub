@@ -72,7 +72,7 @@ const handleSubmit = async (e) => {
             <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
             <input type="password" className="form-control" id="confirmPassword" name="confirmPassword"  required value={form.confirmPassword} onChange={handleChange} />
           </div>
-          <button type="submit" className="btn bg-dark w-100 " style={{color:'#d6b3ff'}}>Register</button>
+          <button type="submit" className="btn bg-dark w-100 " style={{color:'black'}}>Register</button>
         </form>
       </div>
     </div>
