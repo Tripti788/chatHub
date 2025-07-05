@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
   background-color: #0f172a; /* your page background */
 }
