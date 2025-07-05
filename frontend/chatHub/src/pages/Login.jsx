@@ -57,7 +57,7 @@ const Login = () => {
             </div>
 
             <div className='mb-3' id='password' >
-                <label htmlFor="email" className='form-label'>Email Address</label>
+                <label htmlFor="email" className='form-label'>Password</label>
                 <input type="password" className='form-control' name='password'  placeholder='Password' onChange={handleChange}/>
             </div>
 
