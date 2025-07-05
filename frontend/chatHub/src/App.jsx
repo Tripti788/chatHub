@@ -15,7 +15,12 @@ function App() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route path='/' element={
+            <div>
+               <Navbar/>
+            <Home/>
+            </div>
+            }/>
 
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
