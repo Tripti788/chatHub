@@ -1,0 +1,22 @@
+.home-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.image-wrapper {
+  flex: 1 1 400px; /* grows, shrinks, minimum width 400px */
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
