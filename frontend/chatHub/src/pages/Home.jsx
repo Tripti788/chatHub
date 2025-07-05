@@ -1,6 +1,6 @@
 import React from 'react';
-import bg_image from '../assets/bg_image';
-import large_set_of_flat_messages from '../assets/large_set_of_flat_messages.jpg';
+import bg_image from '../assets/bg_image.png';
+import bg_image2 from '../assets/bg_image2.jpg';
 import './Home.css'; // optional if you want custom styling
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
         <img src={bg_image} alt="Background Illustration" />
       </div>
       <div className="image-wrapper">
-        <img src={large_set_of_flat_messages} alt="Messages Illustration" />
+        <img src={bg_image2} alt="Messages Illustration" />
       </div>
     </div>
   );
