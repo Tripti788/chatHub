@@ -17,7 +17,7 @@ const Home = () => {
       <div className="image-wrapper">
         <img src={bg_image} alt="Background Illustration" />
       </div>
-      <div className="submit-btn">
+      <div className="submit-btn" style={{paddingRight:'260px'}}>
        <button onClick={handleChat}>Start talking...</button> 
       </div>
     </div>
