@@ -18,7 +18,8 @@ const Home = () => {
         <img src={bg_image} alt="Background Illustration" />
       </div>
       <div className="submit-btn">
-       <button onClick={handleChat}>Start talking...</button>  </div>
+       <button onClick={handleChat}>Start talking...</button> 
+      </div>
     </div>
   );
 };
