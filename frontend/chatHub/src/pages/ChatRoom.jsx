@@ -80,15 +80,6 @@ const ChatRoom = () => {
       content,
       timestamp: new Date().toISOString()
     };
-
-    // console.log("📤 Emitting message:", message); // ✅
-
-    // setMessages(prev => [...prev, {
-    //   ...message,
-    //   _id: Date.now(),
-    //   createdAt: new Date().toISOString()
-    // }]);
-
     socketRef.current.emit('sendMessage', message);
   };
 
@@ -99,7 +90,7 @@ const ChatRoom = () => {
         selectedUser={selectedUser}
         onUserSelect={setSelectedUser}
         loggedInUser={loggedInUser}
-      />
+      /> 
       <ChatWindow
         selectedUser={selectedUser}
         messages={messages}
@@ -109,5 +100,4 @@ const ChatRoom = () => {
     </div>
   );
 };
-
 export default ChatRoom;
